@@ -2997,7 +2997,7 @@ public class DeckPicker extends FragmentActivity {
         HashMap<String, String> data = (HashMap<String, String>) mDeckListAdapter.getItem(id);
         // Log.i(AnkiDroidApp.TAG, "Selected " + deckFilename);
         long deckId = Long.parseLong(data.get("did"));
-        if (deckId == -100 || deckId == -200 || deckId == -300 || deckId == -400 || deckId == -500) {
+        if (deckId == -10 || deckId == -20 || deckId == -30 || deckId == -40 || deckId == -50) {
         	EasyTracker easyTracker = EasyTracker.getInstance(this);
         	easyTracker.send(MapBuilder
         		      .createEvent(getString(R.string.ga_event_download_deck_category),
@@ -3071,27 +3071,32 @@ public class DeckPicker extends FragmentActivity {
     	
     	if (!deckTitles.contains("HSK 1 Vocabulary")) {
     		String[] strings = {"HSK 1 Vocabulary"};
-	    	decks.add(new Object[]{strings, Long.valueOf(-100), 0, 0, 0, false, "https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+1+Vocabulary.apkg"});
+	    	decks.add(new Object[]{strings, Long.valueOf(-10), 0, 0, 0, false,
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+1+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 2 Vocabulary")) {
     		String[] strings = {"HSK 2 Vocabulary"};
-	    	decks.add(new Object[]{strings, Long.valueOf(-200), 0, 0, 0, false, "https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+2+Vocabulary.apkg"});
+	    	decks.add(new Object[]{strings, Long.valueOf(-20), 0, 0, 0, false,
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+2+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 3 Vocabulary")) {
     		String[] strings = {"HSK 3 Vocabulary"};
-	    	decks.add(new Object[]{strings, Long.valueOf(-300), 0, 0, 0, false, "https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+3+Vocabulary.apkg"});
+	    	decks.add(new Object[]{strings, Long.valueOf(-30), 0, 0, 0, false,
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+3+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 4 Vocabulary")) {
     		String[] strings = {"HSK 4 Vocabulary"};
-	    	decks.add(new Object[]{strings, Long.valueOf(-400), 0, 0, 0, false, "https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+4+Vocabulary.apkg"});
+	    	decks.add(new Object[]{strings, Long.valueOf(-40), 0, 0, 0, false,
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+4+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 5 Vocabulary")) {
     		String[] strings = {"HSK 5 Vocabulary"};
-	    	decks.add(new Object[]{strings, Long.valueOf(500), 0, 0, 0, false, "https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+5+Vocabulary.apkg"});
+	    	decks.add(new Object[]{strings, Long.valueOf(-50), 0, 0, 0, false,
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+5+Vocabulary.apkg"});
     	}
     	
         mDeckList.clear();
