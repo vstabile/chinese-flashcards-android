@@ -2239,7 +2239,7 @@ public class Reviewer extends AnkiActivity {
         int[] counts = mSched.counts(mCurrentCard);
 
         int eta = mSched.eta(counts, false);
-        AnkiDroidApp.getCompat().setSubtitle(this, getResources().getQuantityString(R.plurals.reviewer_window_title, eta, eta), mInvertedColors);
+//        AnkiDroidApp.getCompat().setSubtitle(this, getResources().getQuantityString(R.plurals.reviewer_window_title, eta, eta), mInvertedColors);
 
         SpannableString newCount = new SpannableString(String.valueOf(counts[0]));
         SpannableString lrnCount = new SpannableString(String.valueOf(counts[1]));

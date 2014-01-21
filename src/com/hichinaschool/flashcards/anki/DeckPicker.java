@@ -3146,13 +3146,13 @@ public class DeckPicker extends FragmentActivity {
 
         // set title
         Resources res = getResources();
-        if (count != -1) {
-            String time = "-";
-            if (eta != -1) {
-                time = res.getQuantityString(R.plurals.deckpicker_title_minutes, eta, eta);
-            }
-            AnkiDroidApp.getCompat().setSubtitle(this, res.getQuantityString(R.plurals.deckpicker_title, due, due, count, time));
-        }
+//        if (count != -1) {
+//            String time = "-";
+//            if (eta != -1) {
+//                time = res.getQuantityString(R.plurals.deckpicker_title_minutes, eta, eta);
+//            }
+//            AnkiDroidApp.getCompat().setSubtitle(this, res.getQuantityString(R.plurals.deckpicker_title, due, due, count, time));
+//        }
         setTitle(res.getString(R.string.app_name));
 
         // update widget
