@@ -20,8 +20,13 @@
 -->
 <resources>
     
+<!--     HICHINA STRINGS -->
 <string name="ga_event_download_deck_category">deck</string>
 <string name="ga_event_download_deck_action">download</string>
+<string name="subtitle_new">New:</string>
+<string name="subtitle_learning">Learning:</string>
+<string name="subtitle_review">Review:</string>
+<!--     HICHINA STRINGS -->
     
 <string name="btn_continue">Continue</string>
 

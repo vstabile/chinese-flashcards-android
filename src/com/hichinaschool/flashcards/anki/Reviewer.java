@@ -1657,27 +1657,27 @@ public class Reviewer extends AnkiActivity {
         if (mPrefTextSelection) {
             hideLookupButton();
         }
-        switch (ease) {
-            case EASE_FAILED:
-                mChosenAnswer.setText("\u2022");
-                mChosenAnswer.setTextColor(mNext1.getTextColors());
-                // if ((deck.getDueCount() + deck.getNewCountToday()) == 1) {
-                // mIsLastCard = true;
-                // }
-                break;
-            case EASE_HARD:
-                mChosenAnswer.setText("\u2022\u2022");
-                mChosenAnswer.setTextColor(mNext2.getTextColors());
-                break;
-            case EASE_MID:
-                mChosenAnswer.setText("\u2022\u2022\u2022");
-                mChosenAnswer.setTextColor(mNext3.getTextColors());
-                break;
-            case EASE_EASY:
-                mChosenAnswer.setText("\u2022\u2022\u2022\u2022");
-                mChosenAnswer.setTextColor(mNext4.getTextColors());
-                break;
-        }
+//        switch (ease) {
+//            case EASE_FAILED:
+//                mChosenAnswer.setText("\u2022");
+//                mChosenAnswer.setTextColor(mNext1.getTextColors());
+//                // if ((deck.getDueCount() + deck.getNewCountToday()) == 1) {
+//                // mIsLastCard = true;
+//                // }
+//                break;
+//            case EASE_HARD:
+//                mChosenAnswer.setText("\u2022\u2022");
+//                mChosenAnswer.setTextColor(mNext2.getTextColors());
+//                break;
+//            case EASE_MID:
+//                mChosenAnswer.setText("\u2022\u2022\u2022");
+//                mChosenAnswer.setTextColor(mNext3.getTextColors());
+//                break;
+//            case EASE_EASY:
+//                mChosenAnswer.setText("\u2022\u2022\u2022\u2022");
+//                mChosenAnswer.setTextColor(mNext4.getTextColors());
+//                break;
+//        }
 
         // remove chosen answer hint after a while
         mTimerHandler.removeCallbacks(removeChosenAnswerText);
@@ -2259,10 +2259,14 @@ public class Reviewer extends AnkiActivity {
                 revCount.setSpan(new UnderlineSpan(), 0, revCount.length(), 0);
                 break;
         }
+        
+		//	mTextBarRed.setText(newCount);
+		//	mTextBarBlack.setText(lrnCount);
+		//	mTextBarBlue.setText(revCount);
 
-        mTextBarRed.setText(newCount);
-        mTextBarBlack.setText(lrnCount);
-        mTextBarBlue.setText(revCount);
+        mTextBarRed.setText(getString(R.string.subtitle_new) + " " +newCount);
+        mTextBarBlack.setText(getString(R.string.subtitle_learning) + " " + lrnCount);
+        mTextBarBlue.setText(getString(R.string.subtitle_review) + " " + revCount);
     }
 
 
