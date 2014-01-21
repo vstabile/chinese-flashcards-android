@@ -1794,7 +1794,7 @@ public class Reviewer extends AnkiActivity {
 
         mCardTimer = (Chronometer) findViewById(R.id.card_time);
         if (mShowProgressBars && mProgressBars.getVisibility() != View.VISIBLE) {
-            switchVisibility(mProgressBars, View.VISIBLE);
+//            switchVisibility(mProgressBars, View.VISIBLE);
         }
 
         mChosenAnswer = (TextView) findViewById(R.id.choosen_answer);
@@ -2264,7 +2264,7 @@ public class Reviewer extends AnkiActivity {
 		//	mTextBarBlack.setText(lrnCount);
 		//	mTextBarBlue.setText(revCount);
 
-        mTextBarRed.setText(getString(R.string.subtitle_new) + " " +newCount);
+        mTextBarRed.setText(getString(R.string.subtitle_new) + " " + newCount);
         mTextBarBlack.setText(getString(R.string.subtitle_learning) + " " + lrnCount);
         mTextBarBlue.setText(getString(R.string.subtitle_review) + " " + revCount);
     }
