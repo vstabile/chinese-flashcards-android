@@ -120,6 +120,6 @@
     <item>Przejrzyj z wyprzedzeniem</item>
     <item>Ucz się losowo wybranych kart</item>
     <item>Przejrzyj nowe karty</item>
-    <item>Ogranicz do poszczególnych tagów</item>
+<!--     <item>Ogranicz do poszczególnych tagów</item> -->
   </string-array>
 </resources>

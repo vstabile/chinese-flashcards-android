@@ -120,6 +120,6 @@
     <item>Gözden geçirme öncesinde</item>
     <item>Rastgele seçilmiş kartları öğren</item>
     <item>Yeni kartları önizleme</item>
-    <item>Belirli etiketleri sınırla</item>
+<!--     <item>Belirli etiketleri sınırla</item> -->
   </string-array>
 </resources>

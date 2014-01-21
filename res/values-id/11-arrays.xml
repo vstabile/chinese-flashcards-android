@@ -120,6 +120,6 @@
     <item>Review ahead</item>
     <item>Study a random selection of cards</item>
     <item>Tinjau ulang kartu baru</item>
-    <item>Batasi untuk tag tertentu</item>
+<!--     <item>Batasi untuk tag tertentu</item> -->
   </string-array>
 </resources>

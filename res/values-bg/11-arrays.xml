@@ -120,6 +120,6 @@
     <item>Review ahead</item>
     <item>Study a random selection of cards</item>
     <item>Preview new cards</item>
-    <item>Limit to particular tags</item>
+<!--     <item>Limit to particular tags</item> -->
   </string-array>
 </resources>

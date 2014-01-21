@@ -120,6 +120,6 @@
     <item>提早複習</item>
     <item>依隨機順序學習卡片</item>
     <item>預覽新卡片</item>
-    <item>僅限特定標籤的卡片</item>
+<!--     <item>僅限特定標籤的卡片</item> -->
   </string-array>
 </resources>

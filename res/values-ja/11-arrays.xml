@@ -120,6 +120,6 @@
     <item>学習の先行</item>
     <item>カードをランダムに学習する。</item>
     <item>新しいカードをプレビューする。</item>
-    <item>特定のタグの制限</item>
+<!--     <item>特定のタグの制限</item> -->
   </string-array>
 </resources>

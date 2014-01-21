@@ -120,6 +120,6 @@
     <item>Ripeti in anticipo</item>
     <item>Studia una selezione casuale di carte</item>
     <item>Anteprima carte nuove</item>
-    <item>Limita ad etichette particolari</item>
+<!--     <item>Limita ad etichette particolari</item> -->
   </string-array>
 </resources>

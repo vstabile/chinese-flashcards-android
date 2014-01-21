@@ -120,6 +120,6 @@
     <item>Opakovat dopředu</item>
     <item>Studovat náhodný výběr karet</item>
     <item>Zkoušení nových karet</item>
-    <item>Omezit podle štítků</item>
+<!--     <item>Omezit podle štítků</item> -->
   </string-array>
 </resources>

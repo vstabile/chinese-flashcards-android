@@ -120,6 +120,6 @@
     <item>提前复习</item>
     <item>学习随机选择的卡牌。</item>
     <item>预览新卡牌</item>
-    <item>仅限于特定标签</item>
+<!--     <item>仅限于特定标签</item> -->
   </string-array>
 </resources>

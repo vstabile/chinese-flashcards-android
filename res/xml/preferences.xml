@@ -71,21 +71,23 @@
         </PreferenceCategory>
         <PreferenceCategory android:title="@string/pref_cat_messages" >
 	        <CheckBoxPreference
-	            android:defaultValue="true"
+	            android:defaultValue="false"
 	            android:disableDependentsState="false"
 	            android:key="showBroadcastMessages"
 	            android:summary="@string/show_broadcast_messages_summ"
 	            android:title="@string/show_broadcast_messages" />
+<!-- 	        android:defaultValue="true" -->
 	        <ListPreference
-	            android:defaultValue="2"
+	            android:defaultValue="1"
 	            android:entries="@array/error_reporting_choice_labels"
 	            android:entryValues="@array/error_reporting_choice_values"
 	            android:key="reportErrorMode"
 	            android:summary="@string/error_reporting_choice_summary"
 	            android:title="@string/error_reporting_choice" />
+<!-- 	        android:defaultValue="2" -->
 		</PreferenceCategory>
         <PreferenceCategory android:title="@string/pref_cat_reset" >
-            <com.ichi2.preferences.CustomDialogPreference
+            <com.hichinaschool.flashcards.preferences.CustomDialogPreference
                 android:dependency="showBroadcastMessages"
                 android:dialogIcon="@android:drawable/ic_dialog_alert"
                 android:dialogMessage="@string/reset_messages_question"
@@ -94,7 +96,7 @@
                 android:positiveButtonText="@string/yes"
                 android:summary="@string/reset_messages_summ"
                 android:title="@string/reset_messages" />
-            <com.ichi2.preferences.CustomDialogPreference
+            <com.hichinaschool.flashcards.preferences.CustomDialogPreference
                 android:dialogIcon="@android:drawable/ic_dialog_alert"
                 android:dialogMessage="@string/reset_languages_question"
                 android:dialogTitle="@string/reset_languages"
@@ -102,7 +104,7 @@
                 android:positiveButtonText="@string/yes"
                 android:summary="@string/reset_languages_summ"
                 android:title="@string/reset_languages" />
-            <com.ichi2.preferences.CustomDialogPreference
+            <com.hichinaschool.flashcards.preferences.CustomDialogPreference
                 android:dialogIcon="@android:drawable/ic_dialog_alert"
                 android:dialogMessage="@string/reset_dialogs_question"
                 android:dialogTitle="@string/reset_dialogs"
@@ -110,7 +112,7 @@
                 android:positiveButtonText="@string/yes"
                 android:summary="@string/reset_dialogs_summ"
                 android:title="@string/reset_dialogs" />
-            <com.ichi2.preferences.CustomDialogPreference
+            <com.hichinaschool.flashcards.preferences.CustomDialogPreference
                 android:dialogIcon="@android:drawable/ic_dialog_alert"
                 android:dialogMessage="@string/reset_all_question"
                 android:dialogTitle="@string/reset_all"
@@ -229,13 +231,13 @@
                 android:summary=""
                 android:entries="@array/new_spread_labels"
                 android:entryValues="@array/new_spread_values" />
-            <com.ichi2.preferences.NumberRangePreference
+            <com.hichinaschool.flashcards.preferences.NumberRangePreference
                 android:key="learnCutoff"
                 android:title="@string/learn_cutoff"
                 android:summary="@string/learn_cutoff_summ"
                 app:min="0"
                 app:max="999" />
-            <com.ichi2.preferences.NumberRangePreference
+            <com.hichinaschool.flashcards.preferences.NumberRangePreference
                 android:key="timeLimit"
                 android:title="@string/time_limit"
                 android:summary="@string/time_limit_summ"
@@ -606,7 +608,7 @@
             android:title="@string/filter_external_data" >
             <CheckBoxPreference
                 android:defaultValue="false"
-                android:key="com.ichi2.filters.GoogleTranslaterFilter"
+                android:key="com.hichinaschool.flashcards.filters.GoogleTranslaterFilter"
                 android:summary="@string/filter_google_translate_summ"
                 android:title="@string/filter_google_translate" />
         </PreferenceCategory>

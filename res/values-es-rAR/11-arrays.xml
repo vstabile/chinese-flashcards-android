@@ -120,6 +120,6 @@
     <item>Revisar por adelantado</item>
     <item>Estudiar una selección azarosa de tarjetas</item>
     <item>Previsualizar nuevas tarjetas</item>
-    <item>Limitar a etiquetas particulares</item>
+<!--     <item>Limitar a etiquetas particulares</item> -->
   </string-array>
 </resources>

@@ -120,6 +120,6 @@
     <item>미리 복습하기</item>
     <item>무작위 카드 학습하기</item>
     <item>새로운 카드 미리 학습하기</item>
-    <item>특정 태그로만 제한하기</item>
+<!--     <item>특정 태그로만 제한하기</item> -->
   </string-array>
 </resources>

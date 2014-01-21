@@ -120,6 +120,6 @@
     <item>Antecipar revisão</item>
     <item>Revisar um grupo de cartões aleatórios</item>
     <item>Estudar cartões novos</item>
-    <item>Limitar a tags específicas</item>
+<!--     <item>Limitar a tags específicas</item> -->
   </string-array>
 </resources>

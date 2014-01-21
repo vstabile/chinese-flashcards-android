@@ -120,6 +120,6 @@
     <item>Repetera i förväg</item>
     <item>Studera slumpvalda kort</item>
     <item>Granska nya kort</item>
-    <item>Begränsa till vissa taggar</item>
+<!--     <item>Begränsa till vissa taggar</item> -->
   </string-array>
 </resources>

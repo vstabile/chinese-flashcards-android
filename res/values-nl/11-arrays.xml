@@ -120,6 +120,6 @@
     <item>Op voorhand herhalen</item>
     <item>Een willekeurige selectie van kaarten studeren</item>
     <item>Nieuwe kaarten voorvertonen</item>
-    <item>Beperken tot bepaalde tags</item>
+<!--     <item>Beperken tot bepaalde tags</item> -->
   </string-array>
 </resources>

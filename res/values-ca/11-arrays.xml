@@ -120,6 +120,6 @@
     <item>Revisa endavant</item>
     <item>Estudi d\'una selecció aleatòria de les fitxes</item>
     <item>Vista prèvia de les fitxes noves</item>
-    <item>Limit per a determinades etiquetes</item>
+<!--     <item>Limit per a determinades etiquetes</item> -->
   </string-array>
 </resources>

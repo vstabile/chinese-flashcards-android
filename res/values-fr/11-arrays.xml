@@ -120,6 +120,6 @@
     <item>Réviser en avance</item>
     <item>Étudier des cartes au hasard</item>
     <item>Voir en avance</item>
-    <item>Limiter à certaines étiquettes</item>
+<!--     <item>Limiter à certaines étiquettes</item> -->
   </string-array>
 </resources>

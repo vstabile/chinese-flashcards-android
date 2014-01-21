@@ -120,6 +120,6 @@
     <item>Im Voraus lernen</item>
     <item>Zufällige Kartenauswahl lernen</item>
     <item>Zeige Vorschau von neuen Karten</item>
-    <item>Auf bestimmte Tags beschränken</item>
+<!--     <item>Auf bestimmte Tags beschränken</item> -->
   </string-array>
 </resources>
