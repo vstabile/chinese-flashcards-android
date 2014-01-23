@@ -21,11 +21,17 @@
 <resources>
     
 <!--     HICHINA STRINGS -->
-<string name="ga_event_download_deck_category">deck</string>
-<string name="ga_event_download_deck_action">download</string>
-<string name="subtitle_new">New:</string>
-<string name="subtitle_learning">Learning:</string>
-<string name="subtitle_review">Review:</string>
+	<string name="ga_event_download_deck_category">deck</string>
+	<string name="ga_event_download_deck_action">download</string>
+	<string name="subtitle_new">New:</string>
+	<string name="subtitle_learning">Learning:</string>
+	<string name="subtitle_review">Review:</string>
+	
+	<string-array name="SKU_LIST">
+	    <item quantity="SKU_ENGINEERING_VOCABULARY">XX1</item>
+	    <item quantity="SKU_FOOD_VOCABULARY">XX2</item>
+	    <item quantity="SKU_MEDICINE_VOCABULARY">XX3</item>
+	</string-array>
 <!--     HICHINA STRINGS -->
     
 <string name="btn_continue">Continue</string>

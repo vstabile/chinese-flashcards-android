@@ -22,6 +22,7 @@ package com.hichinaschool.flashcards.anki;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
@@ -71,15 +72,20 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.vending.billing.utils.Constants;
+import com.android.vending.billing.utils.IabHelper;
+import com.android.vending.billing.utils.IabResult;
+import com.android.vending.billing.utils.Inventory;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.hichinaschool.flashcards.anim.ActivityTransitionAnimation;
 import com.hichinaschool.flashcards.anki.receiver.SdCardReceiver;
 import com.hichinaschool.flashcards.async.Connection;
-import com.hichinaschool.flashcards.async.DeckTask;
 import com.hichinaschool.flashcards.async.Connection.OldAnkiDeckFilter;
 import com.hichinaschool.flashcards.async.Connection.Payload;
+import com.hichinaschool.flashcards.async.DeckTask;
 import com.hichinaschool.flashcards.async.DeckTask.Listener;
 import com.hichinaschool.flashcards.async.DeckTask.TaskData;
 import com.hichinaschool.flashcards.charts.ChartBuilder;
@@ -219,7 +225,9 @@ public class DeckPicker extends FragmentActivity {
     private int mDeckLastItemSelected;
     
     /* HiChina! variables */
-    private boolean lesson1added = false;
+    IabHelper mHelper;
+    private String TAG_BILLING = "InAppBilling";
+    private Inventory decksInventory = null;
     
     private boolean mDontSaveOnStop = false;
 
@@ -902,6 +910,29 @@ public class DeckPicker extends FragmentActivity {
         @Override
         public void onProgressUpdate(TaskData... values) { }
     };
+    
+    IabHelper.QueryInventoryFinishedListener mQueryFinishedListener = new IabHelper.QueryInventoryFinishedListener() {
+    	@Override
+    	public void onQueryInventoryFinished(IabResult result, Inventory inventory){
+    		if (result.isFailure()) {
+    			// handle error
+    		return;
+    		}
+
+    		decksInventory = inventory;
+    		loadCollection();
+
+//	        String engTitle = inventory.getSkuDetails(Constants.SKU_ENGINEERING_VOCABULARY).getTitle();
+//	        String foodTitle = inventory.getSkuDetails(Constants.SKU_FOOD_VOCABULARY).getTitle();
+//	        String medTitle = inventory.getSkuDetails(Constants.SKU_MEDICINE_VOCABULARY).getTitle();
+//	        
+//	        
+//	        if (engTitle != null) {
+//	        	Toast.makeText(DeckPicker.this, engTitle, Toast.LENGTH_SHORT).show();
+//	        	loadCollection();
+//	        }
+    	}
+    };
 
     // ----------------------------------------------------------------------------
     // ANDROID METHODS
@@ -911,6 +942,9 @@ public class DeckPicker extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) throws SQLException {   	
         // Log.i(AnkiDroidApp.TAG, "DeckPicker - onCreate");
+    	
+    	prepareInAppBilling();
+    	
         Intent intent = getIntent();
         if (!isTaskRoot()) {
             // Log.i(AnkiDroidApp.TAG, "DeckPicker - onCreate: Detected multiple instance of this activity, closing it and return to root activity");
@@ -1135,6 +1169,36 @@ public class DeckPicker extends FragmentActivity {
         }
     }
 
+	private void prepareInAppBilling() {		
+		String base = "Y]]V]~UZVse|}S-c$VUEQRUU[WUE,UY]]VWs_WUEQU%dpF_~VA&B{$EPL-[|QB\"WRDlZ#&Vq!e_\"dNa[b;}_F[}R]!s%\"sa~b!,[uDwN!\"vp\"YS,Vs!lsvM~%z-}F;";
+		base += "ddwsRBlLaXanl$;$z,[E_,#m wDq,gp#;nw|;^Qc;MB{xM,L\\zVxqsqNpqPsM$,#;]";
+		base += "f^mbcgc\\YFUfvPgpBRWm$vRaNrLW`|B^e{w'NqS!W\\QYM^lA!lP`zGZ%neXc$sM-xCq}zbURy-frs}!Em|S$NnccY\"Sz~P^ay?[";
+		base += "cAU^bFXWYMuc{^e\"'LdV~CpcM_ZFMl\"Wy-bgm@#n{Ze`^Eg_V]c~felcP}`GqFs'~`QlZPRLY[}eQ_nQD;c]PUEUV";
+		String transformed = stringTransform(base, 0x14);
+		
+    	mHelper = new IabHelper(this, transformed);
+    	
+    	mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+    		   public void onIabSetupFinished(IabResult result) {
+    		      if (!result.isSuccess()) {
+    		         Log.d(TAG_BILLING, "Problem setting up In-app Billing: " + result);
+    		      } else {
+    		    	  String[] skuList = getResources().getStringArray(R.array.SKU_LIST);
+    		    	  List<String> stringList = new ArrayList<String>(Arrays.asList(skuList));
+    		    	  mHelper.queryInventoryAsync(true, stringList,
+    		    			  mQueryFinishedListener);
+    		      }
+    		   }
+		});
+	}
+	
+	static String stringTransform(String s, int i) {
+		   char[] chars = s.toCharArray();
+		   for(int j = 0; j<chars.length; j++)
+		      chars[j] = (char)(chars[j] ^ i);
+		   return String.valueOf(chars);
+	}
+    
     @Override
     public void onStart() {
       super.onStart();
@@ -1454,6 +1518,8 @@ public class DeckPicker extends FragmentActivity {
         if (mUnmountReceiver != null) {
             unregisterReceiver(mUnmountReceiver);
         }
+        if (mHelper != null) mHelper.dispose();
+        	mHelper = null;
         // Log.i(AnkiDroidApp.TAG, "DeckPicker - onDestroy()");
     }
 
@@ -3072,31 +3138,62 @@ public class DeckPicker extends FragmentActivity {
     	if (!deckTitles.contains("HSK 1 Vocabulary")) {
     		String[] strings = {"HSK 1 Vocabulary"};
 	    	decks.add(new Object[]{strings, Long.valueOf(-10), 0, 0, 0, false,
-	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+1+Vocabulary.apkg"});
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com/android/flashcards/HSK+1+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 2 Vocabulary")) {
     		String[] strings = {"HSK 2 Vocabulary"};
 	    	decks.add(new Object[]{strings, Long.valueOf(-20), 0, 0, 0, false,
-	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+2+Vocabulary.apkg"});
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com/android/flashcards/HSK+2+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 3 Vocabulary")) {
     		String[] strings = {"HSK 3 Vocabulary"};
 	    	decks.add(new Object[]{strings, Long.valueOf(-30), 0, 0, 0, false,
-	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+3+Vocabulary.apkg"});
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com/android/flashcards/HSK+3+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 4 Vocabulary")) {
     		String[] strings = {"HSK 4 Vocabulary"};
 	    	decks.add(new Object[]{strings, Long.valueOf(-40), 0, 0, 0, false,
-	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+4+Vocabulary.apkg"});
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com/android/flashcards/HSK+4+Vocabulary.apkg"});
     	}
     	
     	if (!deckTitles.contains("HSK 5 Vocabulary")) {
     		String[] strings = {"HSK 5 Vocabulary"};
 	    	decks.add(new Object[]{strings, Long.valueOf(-50), 0, 0, 0, false,
-	    			"https://s3.amazonaws.com/s3.hichinaschool.com.br/HSK+5+Vocabulary.apkg"});
+	    			"https://s3.amazonaws.com/s3.hichinaschool.com/android/flashcards/HSK+5+Vocabulary.apkg"});
+    	}
+    	
+    	// Add InAppBilling decks
+    	if (decksInventory != null) {
+    		String title, url;
+    		if(decksInventory.getSkuDetails(Constants.SKU_ENGINEERING_VOCABULARY) != null) {
+		    	title = decksInventory.getSkuDetails(Constants.SKU_ENGINEERING_VOCABULARY).getTitle();
+		    	url = decksInventory.getSkuDetails(Constants.SKU_ENGINEERING_VOCABULARY).getDescription();
+		    	if (!deckTitles.contains(title)) {
+		    		String[] strings = {title};
+			    	decks.add(new Object[]{strings, Long.valueOf(-60), 0, 0, 0, false, url});
+		    	}
+    		}
+	    	
+    		if(decksInventory.getSkuDetails(Constants.SKU_FOOD_VOCABULARY) != null) {
+		    	title = decksInventory.getSkuDetails(Constants.SKU_FOOD_VOCABULARY).getTitle();
+		    	url = decksInventory.getSkuDetails(Constants.SKU_FOOD_VOCABULARY).getDescription();
+		    	if (!deckTitles.contains(title)) {
+		    		String[] strings = {title};
+			    	decks.add(new Object[]{strings, Long.valueOf(-70), 0, 0, 0, false, url});
+		    	}
+    		}
+	    	
+	    	if(decksInventory.getSkuDetails(Constants.SKU_MEDICINE_VOCABULARY) != null) {
+		    	title = decksInventory.getSkuDetails(Constants.SKU_MEDICINE_VOCABULARY).getTitle();
+		    	url = decksInventory.getSkuDetails(Constants.SKU_MEDICINE_VOCABULARY).getDescription();
+		    	if (!deckTitles.contains(title)) {
+		    		String[] strings = {title};
+			    	decks.add(new Object[]{strings, Long.valueOf(-80), 0, 0, 0, false, url});
+		    	}
+	    	}
     	}
     	
         mDeckList.clear();
@@ -3309,6 +3406,11 @@ public class DeckPicker extends FragmentActivity {
 //        	Toast.makeText(DeckPicker.this, getString(R.string.connection_needed), Toast.LENGTH_SHORT).show();
         }
     };
+    
+    // ----------------------------------------------------------------------------
+    // IN-APP BILLING METHODS
+    // ----------------------------------------------------------------------------
+ 
     
 }
 
